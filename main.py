@@ -1,3 +1,5 @@
+from stats import word_count
+
 def main():
     path_to_file = "books/frankenstein.txt"
     with open(path_to_file) as f:
@@ -7,12 +9,6 @@ def main():
     count_of_charters = character_count(file_contents)
 
     print_report(path_to_file, count_of_words, count_of_charters)
-
-def word_count(s):
-    word_list = s.split()
-    word_count = len(word_list)
-    
-    return word_count
 
 def character_count(s):
     lower_case_s = s.lower()
