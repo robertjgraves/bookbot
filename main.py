@@ -1,7 +1,13 @@
+import sys
 from stats import word_count
 
 def main():
-    path_to_file = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    
+    path_to_file = sys.argv[1]
+
     with open(path_to_file) as f:
         file_contents = f.read()
     
@@ -28,18 +34,20 @@ def sort_dictionary(d):
     return sorted_by_values_desc
 
 def print_report(file_name, word_count, characters):
-    print(f"--- Begin report of {file_name} ---")
-    print(f"{word_count} words found in the document")
-    print("")
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {file_name}...")
+    print("----------- Word Count ----------")
+    print(f"Found {word_count} total words")
+    print("--------- Character Count -------")
     
     sorted_characters = sort_dictionary(characters)
     
     for letter in sorted_characters:
         if not letter.isalpha():
             continue
-        print(f"The '{letter}' character was found {sorted_characters[letter]} times")
+        print(f"{letter}: {sorted_characters[letter]}")
 
-    print("--- End report ---")
+    print("============= END ===============")
 
 
 
